@@ -21,7 +21,7 @@ namespace WebForms
 
             var claims = cp.Claims.ToList();
 
-//            grdClaims.DataSource = cp.Claims.ToList();
+            //            grdClaims.DataSource = cp.Claims.ToList();
             grdClaims.DataSource = result.Identity.Claims;
             grdClaims.DataBind();
 
