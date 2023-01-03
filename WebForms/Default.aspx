@@ -2,38 +2,63 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
-    <dl>
-
-    <% 
-        // hack
-        var result = Context.GetOwinContext().Authentication.AuthenticateAsync("cookies").Result;
+    <h1>Login as: <%= User.Identity.Name %></h1>
 
 
-        foreach (var claim in result.Identity.Claims)
-        {
-    %>
-   
-            <dt>
-                <%: claim.Type %>
-            </dt>
+<div class="card">
+  <div class="card-header">
+    <h3>Id Token</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+    <asp:Label ID="lblIdToken" runat="server" Text=""></asp:Label>
+    </p>
+  </div>
+</div>
 
-            <dd>
-                <%: claim.Value %>
-            </dd>
-        
-    <%
-        }
-    %>
 
-    <%
-        foreach (var item in result.Properties.Dictionary)
-        {
-    %>
-            <dt><%:item.Key %></dt>
-            <dd><%:item.Value %></dd>
-    <%
-        }
-    %>
-    </dl>
+<div class="card">
+  <div class="card-header">
+    <h3>Access Token</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+        <asp:Label ID="lblAccessToken" runat="server" Text=""></asp:Label>
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Claims</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+    <div class="table-responsive">
+        <asp:GridView ID="grdClaims" runat="server" CssClass="table table-striped table-bordered table-hover" AutoGenerateColumns="false">
+            <Columns>
+                <asp:BoundField DataField="Type" HeaderText="Type"></asp:BoundField>
+                <asp:BoundField DataField="Value" HeaderText="Value" ItemStyle-Wrap="true"></asp:BoundField>
+            </Columns>
+
+        </asp:GridView>
+    </div>
+    </p>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h3>Dictionaries</h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+    <div class="table-responsive">
+        <asp:GridView ID="grdDictionaries" runat="server" CssClass="table table-striped table-bordered table-hover">
+        </asp:GridView>
+    </div>
+    </p>
+  </div>
+</div>
 
 </asp:Content>
