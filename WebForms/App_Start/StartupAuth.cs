@@ -26,7 +26,7 @@ namespace WebForms
         {
             app.UseCookieAuthentication(new CookieAuthenticationOptions()
             {
-                AuthenticationType = _authenticationType,
+                AuthenticationType = _signInAsAuthenticationType,
                 ExpireTimeSpan = TimeSpan.FromMinutes(10),
                 SlidingExpiration = true
             });
